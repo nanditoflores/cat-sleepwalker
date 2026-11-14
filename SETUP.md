@@ -37,7 +37,7 @@ it is a single static file that works on any 64-bit Ubuntu (check with
 **Easiest: build on another computer and copy the file over** (Ubuntu needs no Go at all):
 
 ```bash
-GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o cat-sleepwalker .
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -buildvcs=false -trimpath -ldflags="-s -w" -o cat-sleepwalker .
 ```
 
 **Or build on the Ubuntu machine.** On Ubuntu 22.04, `apt install golang-go`
@@ -46,7 +46,7 @@ gives Go 1.18, which is **too old**. Use the snap instead:
 ```bash
 sudo snap install go --classic
 cd cat-sleepwalker
-CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o cat-sleepwalker .
+CGO_ENABLED=0 go build -buildvcs=false -trimpath -ldflags="-s -w" -o cat-sleepwalker .
 ```
 
 (On Ubuntu 24.04 or newer, `sudo apt install golang-go` is recent enough.)
@@ -64,7 +64,7 @@ Save the token in a root-only file. The command below reads it without
 showing it on screen or saving it in your shell history:
 
 ```bash
-sudo sh -c 'umask 077; read -r -s -p "Paste bot token: " T; echo; printf "%s\n" "$T" > /etc/cat-sleepwalker/bot_token'
+sudo bash -c 'umask 077; read -r -s -p "Paste bot token: " T; echo; printf "%s\n" "$T" > /etc/cat-sleepwalker/bot_token'
 ```
 
 ## 4. Quick test without Telegram
