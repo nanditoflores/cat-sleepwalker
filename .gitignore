@@ -1,0 +1,15 @@
+# Built program (rebuild with: go build -o cat-sleepwalker .)
+/cat-sleepwalker
+/cat-sleepwalker.exe
+/dist/
+
+# Telegram bot token: never commit it
+bot_token
+*.token
+
+# Editor / OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

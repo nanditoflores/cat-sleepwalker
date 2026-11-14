@@ -1,0 +1,15 @@
+{
+  "token_file": "/etc/cat-sleepwalker/bot_token",
+  "allowed_user_ids": [],
+  "broadcast_addr": "255.255.255.255:9",
+  "long_poll_seconds": 50,
+  "poll_interval_seconds": 0,
+  "max_command_age_minutes": 30,
+  "wake_cooldown_seconds": 30,
+  "boot_check_seconds": 180,
+  "machines": [
+    { "id": "sandra",   "name": "Gato Aparato Sandra",   "mac": "58:11:22:DD:0F:EC", "ip": "" },
+    { "id": "jose",     "name": "Gato Aparato Jose",     "mac": "58:11:22:DC:0A:7C", "ip": "" },
+    { "id": "fernando", "name": "Gato Aparato Fernando", "mac": "FC:34:97:A1:71:71", "ip": "" }
+  ]
+}

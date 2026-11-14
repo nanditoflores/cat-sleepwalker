@@ -1,0 +1,50 @@
+[Unit]
+Description=cat-sleepwalker - wake LAN computers from Telegram (outbound only)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/cat-sleepwalker -config /etc/cat-sleepwalker/config.json
+Restart=always
+RestartSec=10
+
+# Token is handed to the service by systemd; the file itself stays root-only.
+LoadCredential=bot_token:/etc/cat-sleepwalker/bot_token
+
+# Run as a throwaway user that exists only while the service runs.
+DynamicUser=yes
+
+# No access to your files: /home, /root and /run/user are invisible.
+ProtectHome=yes
+ProtectSystem=strict
+PrivateTmp=yes
+PrivateDevices=yes
+
+# No privileges, no way to gain them.
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictSUIDSGID=yes
+
+# Only normal network sockets (IPv4/IPv6 + local), nothing exotic.
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+
+# General kernel/system hardening.
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
